@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { Home } from './pages/Home/index.tsx';
-import { Archives } from './pages/Archives/index.tsx';
+import { Home } from './pages/Home/index';
+import { Archives } from './pages/Archives/index';
 
 export const router = createBrowserRouter([
   {
