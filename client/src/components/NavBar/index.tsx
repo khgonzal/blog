@@ -1,7 +1,12 @@
-import React from 'react'
+import React from 'react';
+import { NavContainer } from './styles.d';
 
 const NavBar = () => {
-    return <div>NavBar</div>
-}
+  return (
+    <NavContainer>
+      <div>hi</div>
+    </NavContainer>
+  );
+};
 
-export { NavBar }
+export { NavBar };
