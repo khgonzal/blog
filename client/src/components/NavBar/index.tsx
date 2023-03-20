@@ -4,15 +4,17 @@ import {
   NavContainer,
   LinkContainer,
   StyledLink,
-  StyledAvatar,
+  ImageContainer
 } from './styles.d';
 import { LinkData } from './data.d';
+import { AvatarDropdown } from '../AvatarDropdown';
 
 const NavBar = () => {
   const location = useLocation();
 
   return (
     <NavContainer>
+      <ImageContainer>this will be an image</ImageContainer>
       <LinkContainer>
         {LinkData.map((item) => {
           const isActivePath: boolean = location.pathname === item.path;
@@ -23,7 +25,7 @@ const NavBar = () => {
           );
         })}
       </LinkContainer>
-        <StyledAvatar />
+      <AvatarDropdown />
     </NavContainer>
   );
 };
