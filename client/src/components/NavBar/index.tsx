@@ -7,7 +7,7 @@ import {
   ImageContainer
 } from './styles.d';
 import { LinkData } from './data.d';
-import { AvatarDropdown } from '../AvatarDropdown';
+import { AvatarDropdown } from 'components/AvatarDropdown';
 
 const NavBar = () => {
   const location = useLocation();

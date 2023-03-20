@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Body } from '../../components/Body';
-import { NavBar } from '../../components/NavBar/index';
+import { Body } from 'components/Body';
+import { NavBar } from 'components/NavBar/index';
 
 const Home = () => {
   const navigate = useNavigate();
