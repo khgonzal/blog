@@ -1,4 +1,7 @@
+// Globals
 import React from 'react'
+
+// Styles
 import { StyledBody } from './styles.d'
 
 const Body = ({children}: JSX.ElementChildrenAttribute) => {

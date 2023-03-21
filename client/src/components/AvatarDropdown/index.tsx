@@ -1,4 +1,7 @@
+// Globals
 import React, { useState } from 'react';
+
+// Styles
 import {DropdownContainer, StyledAvatar, StyledDropdown } from './styles.d';
 
 const AvatarDropdown = () => {

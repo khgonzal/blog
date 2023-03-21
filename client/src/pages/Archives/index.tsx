@@ -1,4 +1,7 @@
+// Globals
 import React from 'react';
+
+// Components
 import { NavBar } from 'components/NavBar';
 
 

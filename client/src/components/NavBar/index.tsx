@@ -1,12 +1,19 @@
+// Globals
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+
+// Styles
 import {
   NavContainer,
   LinkContainer,
   StyledLink,
   ImageContainer
 } from './styles.d';
+
+// Data
 import { LinkData } from './data.d';
+
+// Components
 import { AvatarDropdown } from 'components/AvatarDropdown';
 
 const NavBar = () => {

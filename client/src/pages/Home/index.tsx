@@ -1,5 +1,8 @@
+// Globals
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+// Components
 import { Body } from 'components/Body';
 import { NavBar } from 'components/NavBar';
 
