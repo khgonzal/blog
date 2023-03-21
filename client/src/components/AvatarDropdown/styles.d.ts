@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 const DropdownContainer = styled.div`
   position: relative;
@@ -18,12 +19,13 @@ const StyledAvatar = styled.div`
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  ${(isSelected) => isSelected.isSelected && 'border: 1px solid teal;'};
+  box-shadow: 0 0 5px 1px gray;
+  ${(isSelected) => isSelected.isSelected && 'border: 1px solid teal; box-shadow: none;'};
 `;
 
 const StyledDropdown = styled.div`
   background-color: white;
-  border-radius: 12px;
+  border-radius: 4px;
   width: 200px;
   height: 200px;
   z-index: 200;
@@ -37,4 +39,17 @@ const StyledDropdown = styled.div`
   }
 `;
 
-export { DropdownContainer, StyledAvatar, StyledDropdown };
+const StyledDropdownItem = styled(NavLink)`
+  color: black;
+  text-decoration: none;
+
+  &:hover {
+    background-color: pink;
+  }
+
+  &:active {
+    background-color: blue;
+  }
+`;
+
+export { DropdownContainer, StyledAvatar, StyledDropdown, StyledDropdownItem };

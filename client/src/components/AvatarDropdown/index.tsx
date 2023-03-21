@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 // Styles
-import {DropdownContainer, StyledAvatar, StyledDropdown } from './styles.d';
+import {DropdownContainer, StyledAvatar, StyledDropdown, StyledDropdownItem } from './styles.d';
 
 const AvatarDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,7 +11,7 @@ const AvatarDropdown = () => {
       <StyledAvatar isSelected={isOpen} onClick={() => setIsOpen(!isOpen)} />
       {isOpen && (
         <StyledDropdown>
-          <div>hi</div>
+          <StyledDropdownItem to={'/sign-in'}>Sign in</StyledDropdownItem>
         </StyledDropdown>
       )}
     </DropdownContainer>
