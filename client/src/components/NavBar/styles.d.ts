@@ -20,6 +20,10 @@ const NavContainer = styled.div`
 const ImageContainer = styled.div`
   display: inline;
   width: 33%;
+  height: 90px;
+  background-image: url('/images/logo.png');
+  background-size: 180px 85px;
+  background-repeat: no-repeat;
 
   @media (max-width: 768px) {
     display: none;

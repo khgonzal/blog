@@ -21,7 +21,7 @@ const NavBar = () => {
 
   return (
     <NavContainer>
-      <ImageContainer>this will be an image</ImageContainer>
+      <ImageContainer />
       <LinkContainer>
         {LinkData.map((item) => {
           const isActivePath: boolean = location.pathname === item.path;
