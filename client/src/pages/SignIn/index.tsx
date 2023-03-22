@@ -1,5 +1,5 @@
 import { useUserContext } from 'context';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { StyledContainer, CardContainer } from './styles.d';
 
@@ -7,8 +7,14 @@ const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
-  const { toggleIsAuthenticated } = useUserContext();
+  const { isAuthenticated, toggleIsAuthenticated } = useUserContext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      toggleIsAuthenticated();
+    }
+  }, []);
 
   const handleUsernameChange = (e: any) => {
     setUsername(e.target.value);
