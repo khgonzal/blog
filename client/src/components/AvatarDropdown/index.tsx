@@ -1,6 +1,6 @@
 // Globals
 import { useUserContext } from 'context';
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 // Styles
 import {
@@ -13,11 +13,25 @@ import {
 const AvatarDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useUserContext();
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: any) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   return (
     <DropdownContainer>
       <StyledAvatar isSelected={isOpen} onClick={() => setIsOpen(!isOpen)} />
       {isOpen && (
-        <StyledDropdown>
+        <StyledDropdown ref={dropdownRef}>
           {isAuthenticated && (
             <StyledDropdownItem to={'/'}>Create content</StyledDropdownItem>
           )}
