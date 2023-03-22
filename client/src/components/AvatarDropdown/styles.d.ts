@@ -9,18 +9,19 @@ const DropdownContainer = styled.div`
   }
 `;
 const StyledAvatar = styled.div`
-  background-color: white;
+  background-image: url('/images/logoSmall.png');
+  background-size: 70px 70px;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
+  width: 70px;
+  height: 70px;
   position: fixed;
   top: 14px;
-  right: 12px;
+  right: 16px;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
   box-shadow: 0 0 5px 1px gray;
-  ${(isSelected) => isSelected.isSelected && 'border: 1px solid teal; box-shadow: none;'};
+  ${(isSelected) => isSelected.isSelected && 'box-shadow: inset 0 0 0 1px teal;'};
 `;
 
 const StyledDropdown = styled.div`
@@ -30,8 +31,8 @@ const StyledDropdown = styled.div`
   height: 200px;
   z-index: 200;
   position: fixed;
-  right: 10px;
-  top: 56px;
+  right: 20px;
+  top: 88px;
   box-shadow: 0 0 5px 1px gray;
 
   @media (max-width: 768px) {

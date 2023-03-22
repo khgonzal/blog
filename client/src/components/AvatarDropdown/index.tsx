@@ -14,10 +14,17 @@ const AvatarDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { isAuthenticated } = useUserContext();
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const avatarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     function handleClickOutside(event: any) {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if (
+        dropdownRef.current &&
+        avatarRef.current &&
+        !dropdownRef.current.contains(event.target) &&
+        !avatarRef.current.contains(event.target)
+      ) {
+        console.log(dropdownRef.current.contains(event.target));
         setIsOpen(false);
       }
     }
@@ -27,9 +34,17 @@ const AvatarDropdown = () => {
     };
   }, [dropdownRef]);
 
+  const handleOpen = () => {
+    if (isOpen) {
+      setIsOpen(false);
+    } else {
+      setIsOpen(true);
+    }
+  };
+
   return (
     <DropdownContainer>
-      <StyledAvatar isSelected={isOpen} onClick={() => setIsOpen(!isOpen)} />
+      <StyledAvatar ref={avatarRef} isSelected={isOpen} onClick={handleOpen} />
       {isOpen && (
         <StyledDropdown ref={dropdownRef}>
           {isAuthenticated && (
