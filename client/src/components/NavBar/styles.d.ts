@@ -1,16 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+import 'index.css';
 
 const NavContainer = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: purple;
+  background-color: var(--primary);
   height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   z-index: 100;
+  box-shadow: 0 0 8px 3px var(--pink);
 
   @media (max-width: 768px) {
     justify-content: center;
@@ -41,17 +43,31 @@ const LinkContainer = styled.div`
 `;
 
 const StyledLink = styled(NavLink)`
-  color: white;
+  color: var(--neutral);
+  font-family: var(--font);
   text-decoration: none;
   margin: 0 12px;
-  ${(link) => link.isActive && 'background-color: red;'};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 75px;
+  ${(link) =>
+    link.isActive &&
+    'background-color: var(--pink); border-radius: 8px; padding: 6px; color: var(--secondary);'};
 
   &:hover {
-    background-color: pink;
+    background-color: var(--green);
+    border-radius: 8px;
+    padding: 6px;
   }
 
   &:active {
-    background-color: blue;
+    background-color: var(--brown);
+    border-radius: 8px;
+    padding: 6px;
+  }
+  @media (max-width: 768px) {
+    width: 70px;
   }
 `;
 

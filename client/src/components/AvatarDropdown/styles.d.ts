@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import 'index.css';
 
 const DropdownContainer = styled.div`
   position: relative;
@@ -20,36 +21,43 @@ const StyledAvatar = styled.div`
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  box-shadow: 0 0 5px 1px gray;
-  ${(isSelected) => isSelected.isSelected && 'box-shadow: inset 0 0 0 1px teal;'};
+  box-shadow: 0 0 5px 1px var(--pink);
+  ${(avatar) =>
+    avatar.isSelected && 'box-shadow: inset 0 0 0 2px var(--green);'};
 `;
 
 const StyledDropdown = styled.div`
   background-color: white;
   border-radius: 4px;
-  width: 200px;
-  height: 200px;
+  width: 140px;
+  height: 80px;
   z-index: 200;
   position: fixed;
   right: 20px;
   top: 88px;
-  box-shadow: 0 0 5px 1px gray;
+  box-shadow: 0 0 5px 1px var(--green);
 
   @media (max-width: 768px) {
-    width: 100px;
+    display: flex;
+    flex-direction: column;
   }
 `;
 
 const StyledDropdownItem = styled(NavLink)`
-  color: black;
+  color: var(--primary);
   text-decoration: none;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px 8px;
+  font-size: 14px;
 
   &:hover {
-    background-color: pink;
+    color: var(--blue);
   }
 
   &:active {
-    background-color: blue;
+    color: var(--brown);
   }
 `;
 

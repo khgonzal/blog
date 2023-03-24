@@ -47,9 +47,11 @@ const AvatarDropdown = () => {
       <StyledAvatar ref={avatarRef} isSelected={isOpen} onClick={handleOpen} />
       {isOpen && (
         <StyledDropdown ref={dropdownRef}>
+          {/* link to create content if signed in */}
           {isAuthenticated && (
             <StyledDropdownItem to={'/'}>Create content</StyledDropdownItem>
           )}
+          {/* sign in/sign out */}
           <StyledDropdownItem to={'/sign-in'}>
             {isAuthenticated ? 'Sign out' : 'Sign in'}
           </StyledDropdownItem>

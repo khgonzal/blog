@@ -1,15 +1,30 @@
+// Globals
 import { useUserContext } from 'context';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { StyledContainer, CardContainer } from './styles.d';
+
+// Styles
+import {
+  StyledContainer,
+  CardContainer,
+  StyledLogo,
+  InputContainer,
+  StyledLabel,
+  StyledInput,
+  StyledButton,
+  StyledLink,
+} from './styles.d';
 
 const SignIn = () => {
+  // State
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-
+  // Context
   const { isAuthenticated, toggleIsAuthenticated } = useUserContext();
+  // Router
   const navigate = useNavigate();
 
+  // Hooks
   useEffect(() => {
     if (isAuthenticated) {
       toggleIsAuthenticated();
@@ -29,6 +44,7 @@ const SignIn = () => {
     navigate('/');
   };
 
+  // Vars
   const userNameMismatch =
     username === '' || username !== process.env.REACT_APP_USERNAME;
   const passwordMismatch =
@@ -38,23 +54,29 @@ const SignIn = () => {
   return (
     <StyledContainer>
       <CardContainer>
-        <div>Username</div>
-        <input
-          name="username"
-          placeholder="username"
-          onChange={handleUsernameChange}
-          defaultValue={username}
-        />
-        <div>Password</div>
-        <input
-          name="username"
-          placeholder="password"
-          onChange={handlePasswordChange}
-          defaultValue={password}
-        />
-        <button disabled={isDisabled} onClick={handleSignIn}>
+        <StyledLogo />
+        <InputContainer>
+          <StyledLabel>username</StyledLabel>
+          <StyledInput
+            name="username"
+            placeholder="username"
+            onChange={handleUsernameChange}
+            defaultValue={username}
+          />
+        </InputContainer>
+        <InputContainer>
+          <StyledLabel>password</StyledLabel>
+          <StyledInput
+            name="username"
+            placeholder="password"
+            onChange={handlePasswordChange}
+            defaultValue={password}
+          />
+        </InputContainer>
+        <StyledButton disabled={isDisabled} onClick={handleSignIn}>
           Sign In
-        </button>
+        </StyledButton>
+        <StyledLink to={'/'}>go home</StyledLink>
       </CardContainer>
     </StyledContainer>
   );

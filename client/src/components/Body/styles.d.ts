@@ -1,7 +1,8 @@
 import styled from 'styled-components';
+import 'index.css'
 
-const StyledBody = styled.div`
-    margin-top: 100px;
+const StyledBody = styled.body`
+    margin-top: 110px;
 `
 
 export { StyledBody }
