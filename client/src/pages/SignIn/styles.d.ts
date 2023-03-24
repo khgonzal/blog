@@ -58,6 +58,7 @@ const StyledInput = styled.input`
   margin: 0 12px;
   border-radius: 3px;
   border: 1px solid var(--green);
+  padding: 0 6px 2px;
 
   &:focus {
     box-shadow: 0 0 5px var(--green);
