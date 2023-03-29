@@ -7,7 +7,7 @@ import {
   NavContainer,
   LinkContainer,
   StyledLink,
-  ImageContainer
+  StyledHeader
 } from './styles.d';
 
 // Data
@@ -21,7 +21,7 @@ const NavBar = () => {
 
   return (
     <NavContainer>
-      <ImageContainer />
+      <StyledHeader>the creative dev.</StyledHeader>
       <LinkContainer>
         {LinkData.map((item) => {
           const isActivePath: boolean = location.pathname === item.path;

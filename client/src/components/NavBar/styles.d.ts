@@ -19,13 +19,13 @@ const NavContainer = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
-  display: inline;
+const StyledHeader = styled.h1`
+  display: flex;
+  align-items: center;
+  color: var(--secondary);
   width: 33%;
   height: 90px;
-  background-image: url('/images/logo.png');
-  background-size: 180px 85px;
-  background-repeat: no-repeat;
+  padding-left: 10px;
 
   @media (max-width: 768px) {
     display: none;
@@ -71,4 +71,4 @@ const StyledLink = styled(NavLink)`
   }
 `;
 
-export { NavContainer, LinkContainer, StyledLink, ImageContainer };
+export { NavContainer, LinkContainer, StyledLink, StyledHeader };
