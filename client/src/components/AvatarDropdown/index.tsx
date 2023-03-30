@@ -49,7 +49,7 @@ const AvatarDropdown = () => {
         <StyledDropdown ref={dropdownRef}>
           {/* link to create content if signed in */}
           {isAuthenticated && (
-            <StyledDropdownItem to={'/'}>Create content</StyledDropdownItem>
+            <StyledDropdownItem to={'/create-content'}>Create content</StyledDropdownItem>
           )}
           {/* sign in/sign out */}
           <StyledDropdownItem to={'/sign-in'}>

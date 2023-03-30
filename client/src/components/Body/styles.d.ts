@@ -1,8 +1,12 @@
 import styled from 'styled-components';
-import 'index.css'
+import 'index.css';
 
 const StyledBody = styled.body`
-    margin-top: 110px;
-`
+  margin: 110px 280px 0;
 
-export { StyledBody }
+  @media (max-width: 768px) {
+    margin: 110px auto 0;
+  }
+`;
+
+export { StyledBody };

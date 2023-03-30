@@ -15,5 +15,10 @@ router.post('/posts', async (req, res) => {
   return res.status(201).json(insertPost);
 });
 
+router.get('/posts', async (req, res) => {
+  const allPosts = await Posts.find();
+  return res.status(200).json(allPosts);
+});
+
 module.exports = router;
 
