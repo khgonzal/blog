@@ -1,15 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-export function callApi(endpoint: string, method: string, body?: string) {
-  const api = process.env.REACT_APP_DEV_ENV;
-  fetch(`${api}/${endpoint}`, {
-    method,
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded',
-    },
-    body,
-  }).then((data) => {
-    return data.json();
-  });
-}
+const api = process.env.REACT_APP_DEV_ENV;
+
+const useCallApi = () => {
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  const callApi = async (endpoint: string, method: string, body?: {}) => {
+    setLoading(true);
+    try {
+      const response = await fetch(`${api}/${endpoint}`, {
+        method,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(body),
+      });
+      const json = await response.json();
+      setData(json);
+    } catch (error: any) {
+      setError(error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  return { data, loading, error, callApi };
+};
+
+export { useCallApi };

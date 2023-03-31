@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import 'index.css';
 
-// testing commits
 const StyledBody = styled.body`
   margin: 110px 280px 0;
 

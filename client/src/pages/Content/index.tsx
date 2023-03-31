@@ -3,7 +3,7 @@ import { Body } from 'components/Body';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from 'context';
-import { callApi } from 'hooks/callApi';
+import { useCallApi } from 'hooks/callApi';
 
 interface FormData {
   title: string;
@@ -21,15 +21,19 @@ const initialData = {
   category: '',
 };
 const Content = () => {
-  const [data, setData] = useState<FormData>(initialData);
-
-  useEffect(() => {
-    callApi('posts', 'GET');
-  }, []);
+  const [contentData, setContentData] = useState<FormData>(initialData);
+  const { data, loading, error, callApi } = useCallApi();
+  console.log(contentData)
+  const handleSave = async () => {
+    await callApi('posts', 'POST', contentData)
+    console.log('im here')
+    setContentData(initialData)
+  }
 
   const handleChange = (e: any) => {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setContentData({ ...contentData, [e.target.name]: e.target.value });
   };
+
   const navigate = useNavigate();
   const { isAuthenticated } = useUserContext();
   return (
@@ -40,10 +44,40 @@ const Content = () => {
           <FormContainer>
             <div>Title</div>
             <input
-              defaultValue={data.title}
+              defaultValue={contentData.title}
+              value={contentData.title}
               name="title"
               onChange={handleChange}
             />
+            <div>Subtitle</div>
+            <input
+              defaultValue={contentData.subtitle}
+              value={contentData.subtitle}
+              name="subtitle"
+              onChange={handleChange}
+            />
+            <div>Image</div>
+            <input
+              defaultValue={contentData.image}
+              value={contentData.image}
+              name="image"
+              onChange={handleChange}
+            />
+            <div>Body</div>
+            <input
+              defaultValue={contentData.body}
+              value={contentData.body}
+              name="body"
+              onChange={handleChange}
+            />
+            <div>Category</div>
+            <input
+              defaultValue={contentData.category}
+              value={contentData.category}
+              name="category"
+              onChange={handleChange}
+            />
+            <button onClick={handleSave}>Save</button>
           </FormContainer>
         </FormWrapper>
       ) : (

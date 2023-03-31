@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const router = require('./routes/index.js')
+var cors = require('cors')
 
 dotenv.config();
 
@@ -19,11 +20,12 @@ db.on('connected', () => {
 
 db.on('disconnected', () => {
   console.log('db disconnected');
-});
+});1
 
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cors())
 
 app.use('/', router)
 
