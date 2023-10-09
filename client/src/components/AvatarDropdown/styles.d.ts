@@ -24,6 +24,10 @@ const StyledAvatar = styled.div`
   box-shadow: 0 0 5px 1px var(--pink);
   ${(avatar) =>
     avatar.isSelected && 'box-shadow: inset 0 0 0 2px var(--green);'};
+
+  &:hover {
+    box-shadow: 0 0 8px 1px var(--blue);
+  }
 `;
 
 const StyledDropdown = styled.div`

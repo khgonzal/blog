@@ -23,10 +23,9 @@ const initialData = {
 const Content = () => {
   const [contentData, setContentData] = useState<FormData>(initialData);
   const { data, loading, error, callApi } = useCallApi();
-  console.log(contentData)
+
   const handleSave = async () => {
     await callApi('posts', 'POST', contentData)
-    console.log('im here')
     setContentData(initialData)
   }
 
