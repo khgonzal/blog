@@ -12,6 +12,7 @@ export const StyledFooter = styled.footer`
   z-index: 100;
   box-shadow: 0 0 4px 1px var(--pink);
   background-color: var(--white);
+  opacity: 0.8;
 `;
 
 export const StyledLink = styled.a`

@@ -3,7 +3,6 @@ import React, { useState } from 'react';
 const api = process.env.REACT_APP_DEV_ENV;
 
 const useCallApi = () => {
-  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -15,17 +14,17 @@ const useCallApi = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(body),
+        ...body && { body: JSON.stringify(body) },
       });
       const json = await response.json();
-      setData(json);
+      return json;
     } catch (error: any) {
       setError(error);
     } finally {
       setLoading(false);
     }
   };
-  return { data, loading, error, callApi };
+  return { loading, error, callApi };
 };
 
 export { useCallApi };
