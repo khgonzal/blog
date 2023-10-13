@@ -16,10 +16,10 @@ const PostSchema = new mongoose.Schema({
   image: {
     type: String,
   },
-  category: {
-    type: String,
-    required: true,
-  },
+  category: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+  }],
 });
 
 const Posts = mongoose.model('Posts', PostSchema);

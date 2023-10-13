@@ -13,25 +13,61 @@ interface FormData {
   category: string;
 }
 
-const initialData = {
+interface Category {
+  name: string;
+  _id: string;
+}
+
+const initialData: FormData = {
   title: '',
   subtitle: '',
   body: '',
   image: '',
   category: '',
 };
+
 const Content = () => {
   const [contentData, setContentData] = useState<FormData>(initialData);
+  const [dropdownData, setDropdownData] = useState<Category[]>([]);
   const { data, loading, error, callApi } = useCallApi();
 
-  const handleSave = async () => {
-    await callApi('posts', 'POST', contentData)
-    setContentData(initialData)
-  }
+  useEffect(() => {
+    fetchData();
+  }, [data]);
+
+  const fetchData = async () => {
+    const fetchedData = await callApi('categories', 'GET');
+    setDropdownData(fetchedData);
+  };
+
+  const handleSave = async (e: any) => {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('title', contentData.title);
+    formData.append('subtitle', contentData.subtitle);
+    formData.append('body', contentData.body);
+    formData.append('category', contentData.category);
+    formData.append('image', contentData.image);
+    
+    // using multer so can't use global callApi
+    await fetch(`http://localhost:3001/posts`, {method: 'POST', body: formData});
+
+    setContentData(initialData);
+  };
 
   const handleChange = (e: any) => {
-    setContentData({ ...contentData, [e.target.name]: e.target.value });
+    if (e.target.name === 'image') {
+      setContentData({ ...contentData, image: e.target.files[0] });
+    } else {
+      setContentData({ ...contentData, [e.target.name]: e.target.value });
+    }
   };
+
+  const isDisabled: boolean = Object.keys(contentData).some((key) => {
+    const stringKey = key as keyof FormData;
+    return stringKey !== 'image' && !contentData[stringKey];
+  });
 
   const navigate = useNavigate();
   const { isAuthenticated } = useUserContext();
@@ -57,9 +93,9 @@ const Content = () => {
             />
             <div>Image</div>
             <input
-              defaultValue={contentData.image}
-              value={contentData.image}
+              type="file"
               name="image"
+              accept="image/*"
               onChange={handleChange}
             />
             <div>Body</div>
@@ -70,13 +106,18 @@ const Content = () => {
               onChange={handleChange}
             />
             <div>Category</div>
-            <input
-              defaultValue={contentData.category}
-              value={contentData.category}
-              name="category"
-              onChange={handleChange}
-            />
-            <button onClick={handleSave}>Save</button>
+            <select name="category" onChange={handleChange}>
+              <option disabled selected>
+                Select a category...
+              </option>
+              {dropdownData &&
+                dropdownData.map((item) => {
+                  return <option value={item._id}>{item.name}</option>;
+                })}
+            </select>
+            <button onClick={handleSave} disabled={isDisabled}>
+              Save
+            </button>
           </FormContainer>
         </FormWrapper>
       ) : (
