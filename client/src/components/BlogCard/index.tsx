@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 // Styles
-import { StyledCardContainer } from './styles.d';
+import { GradientOverlay, StyledCardContainer, StyledImage, StyledHeader, StyledSubheader } from './styles.d';
 
 interface ImageData {
   data: ArrayBuffer;
@@ -21,12 +21,18 @@ interface BlogCard {
 }
 
 const BlogCard = (props: BlogCard) => {
-    console.log(props)
   const { body, title, subtitle, image } = props.data;
 
   return (
     <StyledCardContainer>
-      {image && <img src={`${image}`} />}
+      {image && (
+        <>
+          <StyledImage src={`${image}`} /> 
+          <GradientOverlay />
+          <StyledHeader>{title}</StyledHeader>
+          <StyledSubheader>{subtitle}</StyledSubheader>
+        </>
+      )}
     </StyledCardContainer>
   );
 };

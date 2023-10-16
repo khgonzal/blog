@@ -19,6 +19,8 @@ import {
   StyledSubHeader,
   StyledBody,
   StyledBlogSection,
+  LinkContainer,
+  StyledLink,
 } from './styles.d';
 
 interface ImageData {
@@ -75,16 +77,18 @@ const Home = () => {
             email. I'd love to hear from you!
           </p>
         </StyledBody>
-        </Body>
-        <StyledBlogSection>
-          {!loading &&
-            !error &&
-            postData &&
-            postData.slice(0,3).map((item) => {
-              return <BlogCard key={item._id} data={item} />;
-            })}
-        </StyledBlogSection>
-        <button onClick={() => navigate('/archives')}>click</button>
+      </Body>
+      <StyledBlogSection>
+        {!loading &&
+          !error &&
+          postData &&
+          postData.slice(0, 3).map((item) => {
+            return <BlogCard key={item._id} data={item} />;
+          })}
+      </StyledBlogSection>
+      <LinkContainer>
+        <StyledLink to={'/archives'}>→ check out more</StyledLink>
+      </LinkContainer>
       <Footer />
     </>
   );

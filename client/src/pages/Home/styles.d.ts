@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import 'index.css';
 
 const ImageContainer = styled.div`
@@ -55,11 +56,33 @@ const StyledBlogSection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-bottom: 48px;
+  padding-bottom: 24px;
   flex-direction: row;
 
   @media (max-width: 768px) {
     flex-direction: column;
+  }
+`;
+
+const LinkContainer = styled.div`
+  margin: 2px 0;
+  padding-bottom: 108px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const StyledLink = styled(Link)`
+  color: var(--blue);
+  font-family: var(--font);
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:active {
+    color: var(--green);
   }
 `;
 
@@ -70,4 +93,6 @@ export {
   StyledSubHeader,
   StyledBody,
   StyledBlogSection,
+  LinkContainer,
+  StyledLink
 };
