@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import 'index.css';
 
 const DropdownContainer = styled.div`
@@ -47,7 +47,7 @@ const StyledDropdown = styled.div`
   }
 `;
 
-const StyledDropdownItem = styled(NavLink)`
+const StyledDropdownItem = styled(Link)`
   color: var(--primary);
   text-decoration: none;
   position: relative;
