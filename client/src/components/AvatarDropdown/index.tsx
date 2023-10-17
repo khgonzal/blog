@@ -13,11 +13,10 @@ import {
 
 const AvatarDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated, logout } = useUserContext();
+  const { isAuthenticated } = useUserContext();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const avatarRef = useRef<HTMLDivElement>(null);
-  const navigate = useNavigate();
-
+  
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (
@@ -44,12 +43,6 @@ const AvatarDropdown = () => {
     }
   };
 
-  const handleClick = () => {
-    if (isAuthenticated) {
-      logout()
-    }
-  }
-
   return (
     <DropdownContainer>
       <StyledAvatar ref={avatarRef} isSelected={isOpen} onClick={handleOpen} />
@@ -60,7 +53,7 @@ const AvatarDropdown = () => {
             <StyledDropdownItem to={'/create-content'}>Create content</StyledDropdownItem>
           )}
           {/* sign in/sign out */}
-          <StyledDropdownItem onClick={handleClick} to={'/sign-in'}>
+          <StyledDropdownItem to={'/sign-in'}>
             {isAuthenticated ? 'Sign out' : 'Sign in'}
           </StyledDropdownItem>
         </StyledDropdown>

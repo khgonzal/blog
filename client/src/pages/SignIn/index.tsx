@@ -20,10 +20,16 @@ const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // Context
-  const { isAuthenticated, login, logout } = useUserContext();
+  const { isAuthenticated, toggleIsAuthenticated } = useUserContext();
   // Router
   const navigate = useNavigate();
 
+// Hooks
+  useEffect(() => {
+    if (isAuthenticated) {
+      toggleIsAuthenticated();
+    }
+  }, []);
 
   const handleUsernameChange = (e: any) => {
     setUsername(e.target.value);
@@ -34,7 +40,6 @@ const SignIn = () => {
   };
 
   const handleSignIn = () => {
-    login({ username: username })
     navigate('/');
   };
 
