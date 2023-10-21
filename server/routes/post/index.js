@@ -44,8 +44,12 @@ router.post('/posts', upload().single('image'), async (req, res) => {
 });
 
 router.get('/posts', async (req, res) => {
-  const allPosts = await Posts.find();
-  return res.status(200).json(allPosts);
+  try {
+    const allPosts = await Posts.find();
+    return res.status(200).json(allPosts);
+  } catch (err) {
+    throw new Error(err)
+  }
 });
 
 module.exports = router;
