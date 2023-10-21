@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import 'index.css';
 
 const StyledContainer = styled.div`
@@ -81,7 +81,7 @@ const StyledButton = styled.button`
   }
 `;
 
-const StyledLink = styled(NavLink)`
+const StyledLink = styled(Link)`
   color: var(--green);
   text-decoration: none;
   font-size: 12px;

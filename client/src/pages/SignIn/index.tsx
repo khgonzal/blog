@@ -20,16 +20,9 @@ const SignIn = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   // Context
-  const { isAuthenticated, toggleIsAuthenticated } = useUserContext();
+  const { isAuthenticated, login } = useUserContext();
   // Router
   const navigate = useNavigate();
-
-// Hooks
-  useEffect(() => {
-    if (isAuthenticated) {
-      toggleIsAuthenticated();
-    }
-  }, []);
 
   const handleUsernameChange = (e: any) => {
     setUsername(e.target.value);
@@ -40,6 +33,7 @@ const SignIn = () => {
   };
 
   const handleSignIn = () => {
+    login({cachedUser: username})
     navigate('/');
   };
 
