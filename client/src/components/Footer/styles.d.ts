@@ -9,7 +9,7 @@ export const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 100;
+  z-index: 2;
   box-shadow: 0 0 4px 1px var(--pink);
   background-color: var(--white);
   opacity: 0.8;

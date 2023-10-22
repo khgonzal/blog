@@ -25,7 +25,6 @@ const AvatarDropdown = () => {
         !dropdownRef.current.contains(event.target) &&
         !avatarRef.current.contains(event.target)
       ) {
-        console.log(dropdownRef.current.contains(event.target));
         setIsOpen(false);
       }
     }

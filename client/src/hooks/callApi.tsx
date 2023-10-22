@@ -4,11 +4,10 @@ const api = process.env.REACT_APP_DEV_ENV;
 
 const useCallApi = () => {
   const [data, setData] = useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   const callApi = async (endpoint: string, method: string, body?: {}, headers?: {}) => {
-    setLoading(true);
     try {
       const response = await fetch(`${api}/${endpoint}`, {
         method,

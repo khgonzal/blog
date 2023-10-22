@@ -11,7 +11,7 @@ const NavContainer = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 100;
+  z-index: 2;
   box-shadow: 0 0 8px 3px var(--pink);
 
   @media (max-width: 768px) {
