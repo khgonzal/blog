@@ -9,6 +9,7 @@ import {
 import { AddCategoryModal } from 'modals/AddCategoryModal';
 import { ContextMenu } from 'components/ContextMenu';
 import { EditCategoryModal } from 'modals/EditCategoryModal';
+import { DeleteCategoryModal } from 'modals/DeleteCategoryModal';
 
 export interface CategoryData {
   _id: string;
@@ -63,6 +64,29 @@ const CategoryTabs = (props: Category) => {
     };
   }, [contextMenuRef]);
 
+  const contextMenuOptions = [
+    {
+      id: 'edit',
+      component: (
+        <EditCategoryModal
+          setRefetchData={setRefetchData}
+          category={selectedContextMenuOption}
+          setContextMenuVisible={setContextMenuVisible}
+        />
+      ),
+    },
+    {
+      id: 'delete',
+      component: (
+        <DeleteCategoryModal
+          setRefetchData={setRefetchData}
+          category={selectedContextMenuOption}
+          setContextMenuVisible={setContextMenuVisible}
+        />
+      ),
+    },
+  ];
+
   return (
     <StyledTabContainer>
       <ContentContainer>
@@ -87,11 +111,8 @@ const CategoryTabs = (props: Category) => {
                 <ContextMenu
                   contextMenuRef={contextMenuRef}
                   key={`context menu - ${item._id}`}
-                  setRefetchData={setRefetchData}
-                  setContextMenuVisible={setContextMenuVisible}
-                  isVisible={contextMenuVisible}
                   position={contextMenuPosition}
-                  selectedContextMenuOption={selectedContextMenuOption}
+                  contextMenuOptions={contextMenuOptions}
                 />
               )}
             </>

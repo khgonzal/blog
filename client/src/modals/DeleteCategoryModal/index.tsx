@@ -4,34 +4,30 @@ import {
   StyledModalContainer,
   ModalHeaderContent,
   StyledHeader,
-  InputContainer,
-  StyledInput,
+  CategoryContainer,
   CloseButton,
   ButtonContainer,
-  SaveButton,
+  DeleteButton,
   StyledOverlay,
 } from './styles.d';
 import { useCallApi } from 'hooks/callApi';
 import { CategoryData } from 'components/CategoryTabs';
 
-interface EditCategoryProps {
+interface DeleteCategoryProps {
   setRefetchData: Dispatch<SetStateAction<boolean>>;
   category: CategoryData | null;
   setContextMenuVisible: Dispatch<SetStateAction<boolean>>;
 }
 
-export const EditCategoryModal = ({setRefetchData, category, setContextMenuVisible}: EditCategoryProps) => {
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [categoryName, setCategoryName] = useState<string | null>(
-    category?.name ?? null
-  );
+export const DeleteCategoryModal = ({setRefetchData, category, setContextMenuVisible}: DeleteCategoryProps) => {
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const { data, loading, error, callApi } = useCallApi();
 
   useEffect(() => {
     function handleClickOutside(event: any) {
       if (overlayRef.current && overlayRef.current.contains(event.target)) {
-        setShowEditModal(false);
+        setShowDeleteModal(false);
         setContextMenuVisible(false);
       }
     }
@@ -42,18 +38,14 @@ export const EditCategoryModal = ({setRefetchData, category, setContextMenuVisib
   }, [overlayRef, setContextMenuVisible]);
 
   const toggleModal = () => {
-    if (showEditModal) {
+    if (showDeleteModal) {
       setContextMenuVisible(false);
     }
-    setShowEditModal(!showEditModal);
+    setShowDeleteModal(!showDeleteModal);
   };
 
-  const handleChange = (e: any) => {
-    setCategoryName(e.target.value);
-  };
-
-  const handleSave = async () => {
-    await callApi('categories', 'PUT', { _id: category?._id, name: categoryName });
+  const handleDelete = async () => {
+    await callApi('categories', 'DELETE', { _id: category?._id });
     setRefetchData(true);
     setContextMenuVisible(false);
     toggleModal();
@@ -61,29 +53,24 @@ export const EditCategoryModal = ({setRefetchData, category, setContextMenuVisib
 
   return (
     <>
-      <StyledButton onClick={toggleModal}>Edit</StyledButton>
-      {showEditModal && (
+      <StyledButton onClick={toggleModal}>Delete</StyledButton>
+      {showDeleteModal && (
         <>
           <StyledOverlay ref={overlayRef}></StyledOverlay>
           <StyledModalContainer>
             <ModalHeaderContent>
               <CloseButton onClick={toggleModal}>X</CloseButton>
             </ModalHeaderContent>
-            <StyledHeader>Edit category:</StyledHeader>
-            <InputContainer>
-              <StyledInput
-                value={categoryName}
-                name="name"
-                onChange={handleChange}
-              />
-            </InputContainer>
+            <StyledHeader>Are you sure you want to delete this category?</StyledHeader>
+            <CategoryContainer>
+              {category?.name}
+            </CategoryContainer>
             <ButtonContainer>
-              <SaveButton
-                disabled={Boolean(!categoryName)}
-                onClick={handleSave}
+              <DeleteButton
+                onClick={handleDelete}
               >
-                Save
-              </SaveButton>
+                Delete
+              </DeleteButton>
             </ButtonContainer>
           </StyledModalContainer>
         </>

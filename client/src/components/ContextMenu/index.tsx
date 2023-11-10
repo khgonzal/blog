@@ -1,35 +1,26 @@
-import { EditCategoryModal } from 'modals/EditCategoryModal';
 import { StyledContextMenu, StyledList, StyledOption } from './styles.d';
-import { Dispatch, RefObject, SetStateAction } from 'react';
-import { CategoryData } from 'components/CategoryTabs';
+import { RefObject } from 'react';
 
 interface ContextMenuProps {
-  setRefetchData: Dispatch<SetStateAction<boolean>>;
-  isVisible: boolean;
   position: { x: number; y: number };
-  selectedContextMenuOption: CategoryData | null;
-  setContextMenuVisible: Dispatch<SetStateAction<boolean>>;
   contextMenuRef: RefObject<HTMLDivElement>
+  contextMenuOptions: { id: string; component: JSX.Element; }[];
 }
 
 const ContextMenu: React.FC<ContextMenuProps> = ({
-  setRefetchData,
   position,
-  selectedContextMenuOption,
   contextMenuRef,
-  setContextMenuVisible
+  contextMenuOptions
 }) => {
   return (
     <>
       <StyledContextMenu ref={contextMenuRef} top={position.y} left={position.x}>
         <StyledList>
-          <StyledOption>
-            <EditCategoryModal
-              setRefetchData={setRefetchData}
-              category={selectedContextMenuOption}
-              setContextMenuVisible={setContextMenuVisible}
-            />
-          </StyledOption>
+            {contextMenuOptions.map(option => (
+              <StyledOption key={option.id}>
+                {option.component}
+              </StyledOption>
+            ))}
         </StyledList>
       </StyledContextMenu>
     </>

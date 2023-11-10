@@ -21,5 +21,10 @@ router.get('/categories', async (req, res) => {
   return res.status(200).json(allCategories);
 });
 
+router.delete('/categories', async (req, res) => {
+  const deletedCategory = await Category.findByIdAndDelete(req.body._id, {new: true});
+  return res.status(200).json(deletedCategory);
+});
+
 module.exports = router;
 
