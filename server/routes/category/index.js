@@ -11,6 +11,11 @@ router.post('/categories', async (req, res) => {
   return res.status(201).json(insertCategory);
 });
 
+router.put('/categories', async (req, res) => {
+  const updatedCategory = await Category.findOneAndUpdate({_id: req.body._id}, {name: req.body.name}, {new: true});
+  return res.status(200).json(updatedCategory);
+});
+
 router.get('/categories', async (req, res) => {
   const allCategories = await Category.find();
   return res.status(200).json(allCategories);

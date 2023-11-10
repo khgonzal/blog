@@ -19,6 +19,8 @@ const ContentContainer = styled.div`
   overflow-x: scroll;
   white-space: nowrap;
   max-width: 90%;
+  height: 68px;
+  align-items: end;
 `;
 
 const StyledTab = styled.div`
@@ -26,6 +28,7 @@ const StyledTab = styled.div`
   display: flex;
   justify-content: start;
   margin-right: 16px;
+  position: relative
 `;
 
 const StyledButton = styled.button`

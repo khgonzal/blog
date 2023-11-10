@@ -3,7 +3,6 @@ import 'index.css';
 
 const StyledBody = styled.body`
   margin: 110px 280px 0;
-  position: relative;
   min-height: 100vh;
 
   @media (max-width: 768px) {
