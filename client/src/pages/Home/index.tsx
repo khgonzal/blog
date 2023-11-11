@@ -1,5 +1,4 @@
 // Globals
-import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 // Hooks
@@ -22,6 +21,7 @@ import {
   LinkContainer,
   StyledLink,
 } from './styles.d';
+import { LoadingSpinner } from 'components/LoadingSpinner';
 
 interface ImageData {
   data: ArrayBuffer;
@@ -39,7 +39,6 @@ interface FormData {
 
 const Home = () => {
   const [postData, setPostData] = useState<FormData[]>([]);
-  const navigate = useNavigate();
   const { loading, error, callApi } = useCallApi();
 
   // Hooks
@@ -51,7 +50,7 @@ const Home = () => {
     const data = await callApi('posts', 'GET');
     setPostData(data);
   };
-
+  
   return (
     <>
       <NavBar />
@@ -79,6 +78,7 @@ const Home = () => {
         </StyledBody>
       </Body>
       <StyledBlogSection>
+        {loading && !Boolean(error) && <LoadingSpinner />}
         {!loading &&
           !error &&
           postData &&
