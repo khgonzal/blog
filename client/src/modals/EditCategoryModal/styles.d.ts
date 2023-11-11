@@ -65,10 +65,14 @@ const InputContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
-  width: 200px;
+  padding: 8px;
+  border: 1px solid var(--blue);
+  border-radius: 4px;
+  outline: none;
 
   &:focus {
-    border-color: var(--primary);
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
 `;
 

@@ -73,10 +73,14 @@ const InputContainer = styled.div`
 `;
 
 const StyledInput = styled.input`
-  width: 200px;
-
+  padding: 8px;
+  border: 1px solid var(--blue);
+  border-radius: 4px;
+  outline: none;
+  
   &:focus {
-    border-color: var(--primary);
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
 `;
 
@@ -102,7 +106,7 @@ const SaveButton = styled.button`
     background-color: rgba(114, 110, 53, 0.8);
     box-shadow: 0 0 2px 4px rgba(114, 110, 53, 0.75);
   }
-   
+
   &:disabled {
     opacity: 0.5;
     cursor: auto;
