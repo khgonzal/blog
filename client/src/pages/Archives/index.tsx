@@ -1,6 +1,7 @@
 // Globals
 import React, { useEffect, useState } from 'react';
 
+
 // Components
 import { NavBar } from 'components/NavBar';
 import { Body } from 'components/Body';
@@ -23,18 +24,19 @@ const Archives = () => {
   useEffect(() => {
     fetchData();
 
-    if (!loading && !error && categoryData) {
-      setActiveCategory(categoryData[0]._id);
-    }
-
     if (Boolean(refetchData)) {
       setRefetchData(false);
     }
-  }, [loading, error, refetchData]);
+
+    if (!activeCategory) {
+      setActiveCategory('1')
+    }
+  }, [loading, error, refetchData, activeCategory]);
 
   const fetchData = async () => {
     const data = await callApi('categories', 'GET');
-    setCategoryData(data);
+    const categoryData = [{ _id: '1', name: 'All' }, ...data];
+    setCategoryData(categoryData);
   };
 
   return (

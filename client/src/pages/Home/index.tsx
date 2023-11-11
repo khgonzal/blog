@@ -87,7 +87,7 @@ const Home = () => {
           })}
       </StyledBlogSection>
       <LinkContainer>
-        <StyledLink to={'/archives'}>→ check out more</StyledLink>
+        <StyledLink to={'/archives/all'}>→ check out more</StyledLink>
       </LinkContainer>
       <Footer />
     </>

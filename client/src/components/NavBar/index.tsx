@@ -24,7 +24,7 @@ const NavBar = () => {
       <StyledHeader>the creative dev.</StyledHeader>
       <LinkContainer>
         {LinkData.map((item) => {
-          const isActivePath: boolean = location.pathname === item.path;
+          const isActivePath: boolean = item.path === '/' ? location.pathname === item.path : location.pathname.startsWith('/archives')
           return (
             <StyledLink key={item.title} isActive={isActivePath} to={item.path}>
               {item.title}

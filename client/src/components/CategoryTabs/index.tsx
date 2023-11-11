@@ -10,6 +10,7 @@ import { AddCategoryModal } from 'modals/AddCategoryModal';
 import { ContextMenu } from 'components/ContextMenu';
 import { EditCategoryModal } from 'modals/EditCategoryModal';
 import { DeleteCategoryModal } from 'modals/DeleteCategoryModal';
+import { useNavigate } from 'react-router-dom';
 
 export interface CategoryData {
   _id: string;
@@ -33,8 +34,11 @@ const CategoryTabs = (props: Category) => {
   });
   const contextMenuRef = useRef<HTMLDivElement>(null);
   const { data, activeCategory, setActiveCategory, setRefetchData } = props;
-  const handleTabSelection = (name: string) => {
-    setActiveCategory(name);
+  const navigate = useNavigate()
+  const handleTabSelection = (name: string, id: string) => {
+    setActiveCategory(id);
+    const urlName = name.toLowerCase().replace(/\s+/g, '-')
+    navigate(`/archives/${urlName}`)
   };
 
   const handleContextMenu = (
@@ -101,8 +105,8 @@ const CategoryTabs = (props: Category) => {
               >
                 <StyledButton
                   key={`button -${item._id}`}
-                  onClick={() => handleTabSelection(item.name)}
-                  isActive={Boolean(item.name === activeCategory)}
+                  onClick={() => handleTabSelection(item.name, item._id)}
+                  isActive={Boolean(item._id === activeCategory)}
                 >
                   {item.name}
                 </StyledButton>

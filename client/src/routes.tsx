@@ -11,7 +11,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: <Home />,
   },
-  { path: '/archives', element: <Archives /> },
+  { path: '/archives/:category', element: <Archives /> },
   { path: '/sign-in', element: <SignIn /> },
   { path: '/create-content', element: <Content /> },
   { path: '/edit-content/:id', element: <Content /> },
