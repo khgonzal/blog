@@ -52,4 +52,14 @@ router.get('/posts', async (req, res) => {
   }
 });
 
+router.get('/posts/:categoryId', async (req, res) => {
+  try {
+    const categoryId = req.params.categoryId;
+    const posts = await Posts.find({ category: categoryId }).populate('category');
+    return res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

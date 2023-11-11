@@ -3,16 +3,11 @@ import React, { useEffect, useState } from 'react';
 // Styles
 import { GradientOverlay, StyledCardContainer, StyledImage, StyledHeader, StyledSubheader } from './styles.d';
 
-interface ImageData {
-  data: ArrayBuffer;
-  type: string;
-}
-
 interface BlogCardData {
   title: string;
   subtitle: string;
   body: string;
-  image: ImageData;
+  image: string;
   category: string;
 }
 
@@ -27,7 +22,7 @@ const BlogCard = (props: BlogCard) => {
     <StyledCardContainer>
       {image && (
         <>
-          <StyledImage src={`${image}`} /> 
+          <StyledImage loading="lazy" src={`${image}`} /> 
           <GradientOverlay />
           <StyledHeader>{title}</StyledHeader>
           <StyledSubheader>{subtitle}</StyledSubheader>

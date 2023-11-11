@@ -23,17 +23,12 @@ import {
 } from './styles.d';
 import { LoadingSpinner } from 'components/LoadingSpinner';
 
-interface ImageData {
-  data: ArrayBuffer;
-  type: string;
-}
-
 interface FormData {
   _id: string;
   title: string;
   subtitle: string;
   body: string;
-  image: ImageData;
+  image: string;
   category: string;
 }
 
@@ -50,7 +45,7 @@ const Home = () => {
     const data = await callApi('posts', 'GET');
     setPostData(data);
   };
-  
+
   return (
     <>
       <NavBar />
