@@ -31,6 +31,7 @@ const upload = () => {
 };
 
 router.post('/posts', upload().single('image'), async (req, res) => {
+  try {
     const newPost = new Posts({
       title: req.body.title,
       subtitle: req.body.subtitle,
@@ -41,22 +42,43 @@ router.post('/posts', upload().single('image'), async (req, res) => {
 
     const insertPost = await newPost.save();
     return res.status(201).json(insertPost);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get('/posts/count', async (req, res) => {
+  try {
+    const totalCount = await Posts.countDocuments();
+    return res.status(200).json(totalCount);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+router.get('/posts/:categoryId', async (req, res) => {
+  try {
+    console.log(req.query, 'query')
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 9;
+
+    console.log(page)
+    console.log(limit)
+    const categoryId = req.params.categoryId;
+    const posts = await Posts.find({ category: categoryId })
+      .populate('category')
+      .skip((page - 1) * limit)
+      .limit(limit);
+    return res.status(200).json(posts);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
 
 router.get('/posts', async (req, res) => {
   try {
     const allPosts = await Posts.find();
     return res.status(200).json(allPosts);
-  } catch (err) {
-    throw new Error(err)
-  }
-});
-
-router.get('/posts/:categoryId', async (req, res) => {
-  try {
-    const categoryId = req.params.categoryId;
-    const posts = await Posts.find({ category: categoryId }).populate('category');
-    return res.status(200).json(posts);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

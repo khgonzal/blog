@@ -15,6 +15,24 @@ const StyledBlogSection = styled.div`
   }
 `;
 
+const StyledBlogContainer = styled.div`
+  margin: 16px 8px;
+`;
+
+const PaginationSection = styled.div`
+  min-width: 85%;
+  margin: 24px;
+  display: flex;
+`;
+
+const PaginationButton = styled.button`
+  color: var(--primary);
+  margin: 8px;
+`;
+
 export {
   StyledBlogSection,
+  StyledBlogContainer,
+  PaginationSection,
+  PaginationButton
 };

@@ -8,6 +8,7 @@ const StyledContextMenu = styled.div`
   ${({ top }) => `top: ${top}px;`}
   ${({ left }) => `left: ${left}px;`}
   box-shadow: 0 0 1px 0 var(--blue);
+  z-index: 50;
 
   &:hover {
     box-shadow: 0 0 1px 1px var(--blue);

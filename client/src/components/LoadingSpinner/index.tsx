@@ -1,5 +1,9 @@
-import { StyledSpinner } from "./styles.d"
+import { StyledSpinner, StyledSpinnerContainer } from './styles.d';
 
 export const LoadingSpinner = () => {
-    return <StyledSpinner />
-}
+  return (
+    <StyledSpinnerContainer>
+      <StyledSpinner />
+    </StyledSpinnerContainer>
+  );
+};

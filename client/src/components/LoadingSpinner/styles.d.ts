@@ -28,7 +28,13 @@ const StyledSpinner = styled.div`
   border-radius: 50%;
   width: 50px;
   height: 50px;
-  animation: ${spin} 1s ease-out infinite, ${changeColor} 4s ease-out infinite;;
+  animation: ${spin} 1s ease-out infinite, ${changeColor} 4s ease-out infinite;
 `;
 
-export { StyledSpinner };
+const StyledSpinnerContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 36px;
+`;
+
+export { StyledSpinner, StyledSpinnerContainer };

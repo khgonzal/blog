@@ -18,13 +18,12 @@ const ContentContainer = styled.div`
   padding-bottom: 6px;
   overflow-x: scroll;
   white-space: nowrap;
-  max-width: 90%;
   height: 68px;
   align-items: end;
 `;
 
 const StyledTab = styled.div`
-  width: 140px;
+  max-width: 140px;
   display: flex;
   justify-content: start;
   margin-right: 16px;
